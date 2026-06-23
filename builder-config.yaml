@@ -20,6 +20,7 @@ receivers:
 
 processors:
   - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.154.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.154.0
 
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.154.0

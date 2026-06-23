@@ -3,3 +3,6 @@
 
 # JetBrains IDE files
 /.idea/
+
+# Local scratch / experimentation
+/local/

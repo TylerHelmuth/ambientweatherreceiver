@@ -1,0 +1,5 @@
+# Output of the example Collector build (see Makefile / builder-config.yaml)
+/_build/
+
+# JetBrains IDE files
+/.idea/

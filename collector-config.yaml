@@ -1,0 +1,23 @@
+# Example runtime configuration for the Collector built by `make build`.
+# Run it with `make run`.
+
+receivers:
+  ambientweather:
+    # Bind a routable LAN address so the weather console can reach it.
+    endpoint: 0.0.0.0:6255
+    path: /data/report/
+    station_name: backyard
+
+processors:
+  batch: {}
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    metrics:
+      receivers: [ambientweather]
+      processors: [batch]
+      exporters: [debug]

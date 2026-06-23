@@ -1,0 +1,36 @@
+# Example OpenTelemetry Collector Builder (ocb) manifest.
+#
+# Produces a custom Collector binary that includes the Ambient Weather receiver
+# from this repository. Build it with `make build`.
+#
+# Docs: https://opentelemetry.io/docs/collector/custom-collector/
+#       https://opentelemetry.io/docs/collector/extend/custom-component/receiver/
+
+dist:
+  name: otelcol-ambientweather
+  description: Example OpenTelemetry Collector build with the Ambient Weather receiver
+  output_path: ./_build
+  version: 0.1.0
+  # Core collector version the components below are built against. Keep this in
+  # sync with the go.opentelemetry.io/collector/* versions in the receiver's go.mod.
+  otelcol_version: 0.154.0
+
+receivers:
+  - gomod: github.com/TylerHelmuth/ambientweatherreceiver/ambientweatherreceiver v0.1.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.154.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.154.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.154.0
+
+extensions: []
+
+# This repository IS the receiver module, so build against the local copy rather
+# than a published release. Drop this replace once you consume a tagged version
+# (e.g. github.com/TylerHelmuth/ambientweatherreceiver/ambientweatherreceiver v0.1.0) from a Go proxy.
+# The path is relative to the generated go.mod in `output_path` (./_build), so it
+# walks up one level to reach the receiver directory at the repo root.
+replaces:
+  - github.com/TylerHelmuth/ambientweatherreceiver/ambientweatherreceiver => ../ambientweatherreceiver

@@ -6,3 +6,6 @@
 
 # Local scratch / experimentation
 /local/
+
+# goenv version pin
+.go-version

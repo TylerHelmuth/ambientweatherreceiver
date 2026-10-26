@@ -64,12 +64,12 @@ func (r *ambientWeatherReceiver) Start(ctx context.Context, host component.Host)
 	mux := http.NewServeMux()
 	mux.HandleFunc(r.cfg.Path, r.handleReport)
 
-	r.server, err = r.cfg.ToServer(ctx, host.GetExtensions(), r.settings.TelemetrySettings, mux)
+	r.server, err = r.cfg.ServerConfig.ToServer(ctx, host.GetExtensions(), r.settings.TelemetrySettings, mux)
 	if err != nil {
 		return err
 	}
 
-	listener, err := r.cfg.ToListener(ctx)
+	listener, err := r.cfg.ServerConfig.ToListener(ctx)
 	if err != nil {
 		return err
 	}

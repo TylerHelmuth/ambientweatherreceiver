@@ -2,7 +2,7 @@
 # Ambient Weather receiver, using the OpenTelemetry Collector Builder (ocb).
 
 # Version of the builder to install. Keep aligned with otelcol_version in the manifest.
-OTELCOL_BUILDER_VERSION ?= 0.154.0
+OTELCOL_BUILDER_VERSION ?= 0.163.0
 # Builder binary. Defaults to the one installed into GOPATH/bin by `install-builder`.
 OTELCOL_BUILDER ?= $(shell go env GOPATH)/bin/builder
 # OCB manifest describing the components to compile into the Collector.

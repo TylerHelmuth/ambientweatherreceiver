@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"go.opentelemetry.io/collector/confmap"
 	"go.opentelemetry.io/collector/confmap/confmaptest"
-	"go.opentelemetry.io/collector/confmap/xconfmap"
 )
 
 func TestLoadConfig(t *testing.T) {
@@ -22,10 +22,10 @@ func TestLoadConfig(t *testing.T) {
 
 	cfg := createDefaultConfig()
 	require.NoError(t, sub.Unmarshal(cfg))
-	require.NoError(t, xconfmap.Validate(cfg))
+	require.NoError(t, confmap.Validate(cfg))
 
 	got := cfg.(*Config)
-	assert.Equal(t, "0.0.0.0:6255", got.NetAddr.Endpoint)
+	assert.Equal(t, "0.0.0.0:6255", got.ServerConfig.NetAddr.Endpoint)
 	assert.Equal(t, "/custom/report/", got.Path)
 	assert.Equal(t, "backyard", got.StationName)
 }
@@ -42,7 +42,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			name:    "empty endpoint",
-			modify:  func(c *Config) { c.NetAddr.Endpoint = "" },
+			modify:  func(c *Config) { c.ServerConfig.NetAddr.Endpoint = "" },
 			wantErr: "endpoint cannot be empty",
 		},
 		{

@@ -156,10 +156,10 @@ func TestBuildMetricsCoreFields(t *testing.T) {
 
 func TestBuildMetricsChannelsAndOptional(t *testing.T) {
 	r := newMappingReceiver(t, func(c *Config) {
-		c.Metrics.AmbientweatherPm25.Enabled = true
-		c.Metrics.AmbientweatherSoilMoisture.Enabled = true
-		c.Metrics.AmbientweatherSolarRadiation.Enabled = true
-		c.Metrics.AmbientweatherUvIndex.Enabled = true
+		c.MetricsBuilderConfig.Metrics.AmbientweatherPm25.Enabled = true
+		c.MetricsBuilderConfig.Metrics.AmbientweatherSoilMoisture.Enabled = true
+		c.MetricsBuilderConfig.Metrics.AmbientweatherSolarRadiation.Enabled = true
+		c.MetricsBuilderConfig.Metrics.AmbientweatherUvIndex.Enabled = true
 	})
 
 	fields := url.Values{}

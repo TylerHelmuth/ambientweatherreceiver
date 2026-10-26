@@ -15,8 +15,8 @@ import (
 
 // Config defines configuration for the Ambient Weather receiver.
 type Config struct {
-	confighttp.ServerConfig       `mapstructure:",squash"`
-	metadata.MetricsBuilderConfig `mapstructure:",squash"`
+	ServerConfig         confighttp.ServerConfig       `mapstructure:",squash"`
+	MetricsBuilderConfig metadata.MetricsBuilderConfig `mapstructure:",squash"`
 
 	// Path is the URL path the weather console is configured to upload to.
 	Path string `mapstructure:"path"`
@@ -30,7 +30,7 @@ type Config struct {
 }
 
 func (cfg *Config) Validate() error {
-	if cfg.NetAddr.Endpoint == "" {
+	if cfg.ServerConfig.NetAddr.Endpoint == "" {
 		return errors.New("endpoint cannot be empty")
 	}
 	if !strings.HasPrefix(cfg.Path, "/") {

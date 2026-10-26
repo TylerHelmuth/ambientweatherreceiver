@@ -187,7 +187,7 @@ func resourceMAC(t *testing.T, md pmetric.Metrics) string {
 
 func TestStartShutdown(t *testing.T) {
 	cfg := createDefaultConfig().(*Config)
-	cfg.NetAddr.Endpoint = "localhost:0"
+	cfg.ServerConfig.NetAddr.Endpoint = "localhost:0"
 	r := newAmbientWeatherReceiver(cfg, receivertest.NewNopSettings(metadata.Type), consumertest.NewNop())
 
 	require.NoError(t, r.Start(t.Context(), componenttest.NewNopHost()))

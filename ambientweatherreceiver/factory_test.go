@@ -27,7 +27,7 @@ func TestCreateDefaultConfig(t *testing.T) {
 
 	config, ok := cfg.(*Config)
 	require.True(t, ok)
-	assert.Equal(t, defaultEndpoint, config.NetAddr.Endpoint)
+	assert.Equal(t, defaultEndpoint, config.ServerConfig.NetAddr.Endpoint)
 	assert.Equal(t, defaultPath, config.Path)
 	assert.Empty(t, config.StationName)
 	assert.Equal(t, metadata.NewDefaultMetricsBuilderConfig(), config.MetricsBuilderConfig)

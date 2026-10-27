@@ -9,3 +9,6 @@
 
 # goenv version pin
 .go-version
+
+# Handoff notes and agent context
+/.context/
